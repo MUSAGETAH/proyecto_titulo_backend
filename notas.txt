@@ -1,0 +1,120 @@
+1 npm init genera package json
+
+2 instalamos express
+
+3 insalar nodemon que resfresca el servidor cuando hay cambios
+
+npm install -D nodemon a nivel de desarrollo
+
+4 "scripts": {
+    "start": "NODE_ENV=production node sever"
+  }, esta linea se ejecuta cuando mi servidor este en heroku o azure etc
+
+5 dejo mis start para cuando este en modo produccion o modo desarrollo:
+"scripts": {
+    "start": "NODE_ENV=production node sever",
+    "dev": "nodemon server"
+  }
+
+6 declaro estas variables en archivo config carpeta que cree
+
+esto es configuracion de vaiables globales
+
+7 en server.js importo la libreria dotenv const dotenv = require('dotenv');
+
+8 lo mismo que en la linea 7 importo express y mando a llamar su emtodo listen app = express() app.listen
+
+9 npm run dev para abrir en ambiente de desarrollo
+
+10 npm start para ejecutar en ambiente de produccion 
+y cambiar el script start "set NODE_ENV=production&&node server"
+
+CREO ENDPOINTS
+
+creo un archivo dentro de la carpeta rutas que se llamara rutas
+debo registrarlo en server.js
+
+CREO LAS rutas donde estaran ls rutas
+
+CREO LOS CONTROLLERS 
+
+un middleware intercepta los objetos que te envia un cliente en un request
+se usan pruebas de auditorias 
+en este caso utilizaremos los middlewares para capturar los request del cliente 
+e imprimirlos en consola 
+
+instalamos morgan para el middleware
+
+MONGO DB
+mongo db es de open source, se caracteriza por agrupar docimentos en colecciones la distrubucion
+de sql es a traves de tablas, lo equivalente es una coleccion, filas vs docuimentos de mongo db
+son un conjunto de propiedades, tipo json pero se llama bson, distrubuido por propiedades
+en mongo db la forma de comunicar 2 coleccciones es por documentos embebidos, por ejemmplo un objeto 
+bson esta dentro de  otro y por ultimo tablas en sql y colecciones en mongo es la primary key, la diferencia
+es que a sql se le asigna a columnas y a mongo db se le asigna a una propiedad del documento bson
+vamos a tener mongo a traves de atlas
+modelo de autenticacion scram (investigar)
+
+MONGOSEE (odm)
+mongoose libreria de modelamiento que permite crear estructuras que representen las entidades 
+de la base de datos 
+
+para instalar npm install mongoose
+
+llamo a mongoose dentro de db.js y lo enlazo a atlas con una cadena de coneccion en el archivo config.env
+MONGO_URI variable global en la que debo insertar mi cadena de coneccion de atlas 
+abro atlas voy a database y al lado de cluster dice connect pulso y me entrega la cadena de conexon
+en connect your aplication
+
+proces.env. cvon esto acceso a variables globales de la app
+
+en db hare mi conexion a la base de datos en atlas
+
+const connectDataBase = require('./config/db') debo declarar todo en server.js
+esto es igual a mi variable global MONGO_URI mi cadena de conexion a mi base de datos atlas
+mongodb+srv://granrah:biorapfia1@cluster0.onsik.mongodb.net/Disquera?retryWrites=true&w=majority
+
+
+¿Qué es el nodo dotenv?
+DotEnv es un paquete npm ligero que carga automáticamente variables de entorno desde un archivo . env archivo en el proceso. objeto env. Para usar DotEnv, primero instálelo usando el comando: npm i dotenv
+
+esto detecta e intercepta un error en mi conexion a bse de datos atlas en ete caso
+process.on('unhandledRejection', (err, promise)=>{
+    console.log('Errores', err.message)
+    server.close(()=>{
+        process.exit(1)
+    });
+});
+
+
+ALMACENAR CONEXIONES EN MONGO DB
+
+creo mi carpeta models y mis entidades son con mayusculas como por ejemplo Autor.js
+primero mando a llamar a mongoose que me permite hacerlo y asi genero una coleccion en mi base de dat
+const AutorSchema = new mongoose.Schema({
+    
+}) 
+
+RESUMEN
+
+Cada vez que el cliente envia un request (peticion) ese request es capturado por el middlewere
+esto imprime la solicitud que essta haciendo el cliente
+luego llega hacia la capa de rutas y esta rutas reenvian el request a la capa de CONTROLLERS
+donde estara la funcion que requerira el cliente , estas operaciones tienen un try catch
+si la respueta es exitosa devuelve 200 si no el catch se levanta con respuesta 400 de Errores
+lo siguiente es capturar todos los errores
+
+CREACION DE COLECCION PASOS
+
+1- CREAR SQUEMA EN MODELS
+2- CREAR EL MANTENEDOR EN CONTROLLERS (todas las operaciones son asincronas y kllevarian async await)
+3- CREAR LAS RUTAS
+
+declaro la api en server.js
+
+CORS:
+
+npm install cors
+
+SIRVEN PARA QUE MIS APIS TENGAN DISTINTOS CLIENTES COMO MOVILES WEB ETC
+
