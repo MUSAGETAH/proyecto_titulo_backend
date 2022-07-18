@@ -4,6 +4,7 @@
 const {Router} = require("express");
 const express = require("express");
 const ruta = express.Router();
+const {seguridad} = require('../middleware/seguridad');
 
 // ahora importo a la funcion desde el controller
 // que me permite grabar un nuevo record de autor
@@ -14,13 +15,13 @@ const {crearAutor, getAutor, getAutorById, updateAutor,deleteAutor} = require('.
 // la ruta es un slach y usamos el metodo postpara crear un nuevo autor 
 // voy agregando metodos a la ruta segun necesite get post delete etc
 ruta.route("/")
-    .post(crearAutor)
-    .get(getAutor)
+    .post(seguridad, crearAutor)
+    .get(seguridad,getAutor)
 
 ruta.route("/:id")
-    .get(getAutorById)
-    .put(updateAutor)
-    .delete(deleteAutor)
+    .get(seguridad,getAutorById)
+    .put(seguridad,updateAutor)
+    .delete(seguridad,deleteAutor)
 
 
 // ahora exportare la ruta para que sea visible para otros archivos

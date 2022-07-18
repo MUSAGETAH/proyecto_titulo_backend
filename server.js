@@ -9,9 +9,9 @@ dotenv.config({path: './config/config.env'});
 connectDataBase()
 
 //RUTAS
-const disco = require('./rutas/disco')
+const disco = require('./rutas/disco');
 const autor = require('./rutas/autor');
-
+const usuario = require('./rutas/usuario');
 
 const app = express();
 // con esto indicamos que procese el json
@@ -25,10 +25,11 @@ if(process.env.NODE_ENV === 'development'){
 
 // NAMESPACES
 // url generica y variable disco con la url del archivo
-
+// AQUI USAMOS LAS IMPLEMENTACION DE LAS RUTAS
 app.use('/api/DisqueraAutor', autor);
 app.use('/api/disco', disco);
-
+app.use('/usuario', usuario);
+// LUEGO VOY A POSTMAN Y YA ME DEVUELVE EL STATUS, 200 PARA OK
 
 //MIDDLEWARE
 app.use(errorHandler);

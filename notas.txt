@@ -118,3 +118,16 @@ npm install cors
 
 SIRVEN PARA QUE MIS APIS TENGAN DISTINTOS CLIENTES COMO MOVILES WEB ETC
 
+npm install BCRYPTJS
+
+SIRVE PARA ENCRIPTAR LAS PASOS
+
+npm install json WEB
+
+https://regexlib.com/ encuentro validaciones faciles para los las validaciones de modelos 
+
+la use en model usuario
+
+https://jwt.io/ sitio info de jsonwebtoken
+
+
