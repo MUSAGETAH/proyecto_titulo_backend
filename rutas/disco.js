@@ -5,6 +5,7 @@ const ruta = express.Router();
 // cuando es una funcion se usa entre llaves
 const {seguridad} = require('../middleware/seguridad');
 
+//MIS CONTROLLERS FUERON EXPORTADOS Y LOS RECIBO ACA EN ESTA CONSTANTE
 const {
   getDiscoById,
   getDiscos,
@@ -31,4 +32,5 @@ ruta
     .route('/pagination')
     .post(seguridad,pagination);
 
+    // CON ESTE MODULE EXPORT EXPORTO LA RUTA HACIA OTROS ARHCIVOS
 module.exports = ruta;

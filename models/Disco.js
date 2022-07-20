@@ -2,7 +2,7 @@
 // importo mongoose
 const mongoose = require('mongoose');
 
-// creo coleccion
+// creo coleccion DICIENDO QUE ES UN NUEVO MONGOOSE SCHEMA
 const DiscoSquema = new mongoose.Schema({
 
     // puedo agregar validaciones y caracteristicas que va a tener la columna de la coleccion
